@@ -1,0 +1,10 @@
+{
+  "input_vcf": {
+    "description": "Path to the input VCF stored on S3.",
+    "optional": false
+  },
+  "aws_region": {
+    "description": "aws region (e.g. us-east-1). must match were source data is located and where workflow is executed",
+    "optional": true
+  }
+}
