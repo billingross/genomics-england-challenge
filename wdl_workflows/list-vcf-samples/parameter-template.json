@@ -6,5 +6,9 @@
   "aws_region": {
     "description": "aws region (e.g. us-east-1). must match were source data is located and where workflow is executed",
     "optional": true
+  },
+  "bcftools_docker": {
+    "description": "Amazon Elastic Container Registry URI for bcftools image",
+    "optional": false
   }
 }

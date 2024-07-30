@@ -1,13 +1,17 @@
+version 1.0
+
 workflow list_vcf_samples {
 	input {
 		File input_vcf
+		String bcftools_docker
 	}
 
-	String output_vcf_name = "${input_vcf}.samples.txt"
+	String output_vcf_name = "~{input_vcf}.samples.txt"
 
 	call ListSamples {
 		input:
-			input_vcf = input_vcf
+			input_vcf = input_vcf,
+			docker_image = bcftools_docker
 	}
 
 	output {
@@ -18,19 +22,20 @@ workflow list_vcf_samples {
 task ListSamples {
 	input {
 		File input_vcf
+		String docker_image
 	}
 
-	String output_file_name = "${input_vcf}.samples.txt"
+	String output_file_name = "~{input_vcf}.samples.txt"
 
 	command {
-		bcftools query -l ${input_vcf} > ${output_file_name}
+		bcftools query -l ~{input_vcf} > ~{output_file_name}
 	}
 	output {
-		File output_file = "${output_file_name}"
+		File output_file = "~{output_file_name}"
 	}
 	runtime {
-    	docker: "public.ecr.aws/biocontainers/bcftools:1.20--h8b25389_0",
-    	memory: "~2 GiB",
+    	docker: docker_image,
+    	memory: "2 GiB",
     	cpu: 2
   	}	
 }
