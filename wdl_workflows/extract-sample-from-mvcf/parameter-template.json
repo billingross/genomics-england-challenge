@@ -1,0 +1,14 @@
+{
+  "sample_names": {
+    "description": "Path to the input VCF stored on S3.",
+    "optional": false
+  },
+  "bcftools_docker": {
+    "description": "Amazon Elastic Container Registry URI for bcftools image",
+    "optional": false
+  },
+  "input_vcf": {
+    "description": "Gzipped VCF file",
+    "optional": false
+  }
+}
